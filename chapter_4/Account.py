@@ -1,38 +1,41 @@
+class AbortTransaction(Exception):
+    """Raise this exception to abort a bank transaction"""
+    pass
+
+
 class Account():
     def __init__(self, name, password, balance) -> None:
         self.name = name
         self.password = password
-        self.balance = int(balance)
+        self.balance = self.validate_amount(balance)
+
+    def validate_amount(self, amount):
+        try:
+            amount = int(amount)
+        except ValueError:
+            raise AbortTransaction("Amount must be an integer")
+        if amount <= 0:
+            raise AbortTransaction("Amount must be positive")
+        return amount
+
+    def check_password(self, password):
+        if password != self.password:
+            raise AbortTransaction("Incorrect password")
 
     def deposit(self, password, amount):
-        if password != self.password:
-            print("Incorrect password")
-            return None
-        
-        if amount < 0:
-            print("You cannot deposit a negative amount")
-            return None
-
-        self.balance += int(amount)
+        amount = self.validate_amount(amount)
+        self.balance += amount
         return self.balance
 
     def withdraw(self, password, amount):
-        if password != self.password:
-            print("Incorrect password")
-            return None
-
-        if amount < 0:
-            print("You cannot withdraw a negative amount")
-            return None
-
+        amount = self.validate_amount(amount)
+        if amount > self.balance:
+            raise AbortTransaction(
+                "You cannot withdraw more than what you have in your account")
         self.balance -= amount
         return self.balance
 
     def get_balance(self, password):
-        if password != self.password:
-            print("Incorrect password")
-            return None
-
         return self.balance
 
     def show(self):
