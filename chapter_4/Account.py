@@ -22,12 +22,12 @@ class Account():
         if password != self.password:
             raise AbortTransaction("Incorrect password")
 
-    def deposit(self, password, amount):
+    def deposit(self, amount):
         amount = self.validate_amount(amount)
         self.balance += amount
         return self.balance
 
-    def withdraw(self, password, amount):
+    def withdraw(self, amount):
         amount = self.validate_amount(amount)
         if amount > self.balance:
             raise AbortTransaction(
@@ -35,7 +35,7 @@ class Account():
         self.balance -= amount
         return self.balance
 
-    def get_balance(self, password):
+    def get_balance(self):
         return self.balance
 
     def show(self):
