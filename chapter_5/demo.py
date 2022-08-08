@@ -9,7 +9,7 @@ BLACK = (0, 0, 0)
 WINDOW_WIDTH = 640
 WINDOW_HEIGHT = 480
 FRAMES_PER_SECOND = 30
-BASE_PATH = Path(__file__).resolve().parent
+BASE_PATH = str(Path(__file__).resolve().parent)
 N_PIXELS_TO_MOVE = 3
 
 # initialize the window
@@ -18,8 +18,10 @@ window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 clock = pygame.time.Clock()
 
 # load assets
-path_to_ball = str(BASE_PATH) + "/images/ball.png"
+path_to_ball = BASE_PATH + "/images/ball.png"
 ball_image = pygame.image.load(path_to_ball)
+
+path_to_boing = BASE_PATH + "/sounds/boing.wav"
 
 # another way to do it
 # ball_image = pygame.image.load(
@@ -34,6 +36,8 @@ ball_rect.top = random.randrange(MAX_HEIGHT)
 x_speed = N_PIXELS_TO_MOVE
 y_speed = N_PIXELS_TO_MOVE
 
+boing_sound = pygame.mixer.Sound(path_to_boing)
+
 # main loop
 while True:
 
@@ -45,9 +49,11 @@ while True:
     # per frame actions
     if ball_rect.left < 0 or ball_rect.right >= WINDOW_WIDTH:
         x_speed = -x_speed
+        boing_sound.play()
 
     if ball_rect.top < 0 or ball_rect.bottom >= WINDOW_HEIGHT:
         y_speed = -y_speed
+        boing_sound.play()
 
     ball_rect.left += x_speed
     ball_rect.top += y_speed
