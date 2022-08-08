@@ -20,9 +20,16 @@ clock = pygame.time.Clock()
 # load assets
 
 # initialize variables
-button_up_path = BASE_PATH + "/images/button_up.png"
-button_down_path = BASE_PATH + "/images/button_down.png"
-button = SimpleButton(window, (150, 30), button_up_path, button_down_path)
+button_a_up_path = BASE_PATH + "/images/button_a_up.png"
+button_a_down_path = BASE_PATH + "/images/button_a_down.png"
+button_b_up_path = BASE_PATH + "/images/button_b_up.png"
+button_b_down_path = BASE_PATH + "/images/button_b_down.png"
+button_c_up_path = BASE_PATH + "/images/button_c_up.png"
+button_c_down_path = BASE_PATH + "/images/button_c_down.png"
+button_a = SimpleButton(window, (25, 30), button_a_up_path, button_a_down_path)
+button_b = SimpleButton(window, (150, 30), button_b_up_path, button_b_up_path)
+button_c = SimpleButton(
+    window, (275, 30), button_c_up_path, button_c_down_path)
 
 # main loop
 while True:
@@ -31,8 +38,12 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-        if button.handle_event(event):
-            print("button clicked")
+        if button_a.handle_event(event):
+            print("button a clicked")
+        elif button_b.handle_event(event):
+            print("button b clicked")
+        elif button_c.handle_event(event):
+            print("button c clicked")
 
     # per frame actions
 
@@ -40,7 +51,9 @@ while True:
     window.fill(BLACK)
 
     # draw all window elements
-    button.draw()
+    button_a.draw()
+    button_b.draw()
+    button_c.draw()
 
     # update the window
     pygame.display.update()
