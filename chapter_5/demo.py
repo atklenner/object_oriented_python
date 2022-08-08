@@ -22,6 +22,8 @@ path_to_ball = BASE_PATH + "/images/ball.png"
 ball_image = pygame.image.load(path_to_ball)
 
 path_to_boing = BASE_PATH + "/sounds/boing.wav"
+pygame.mixer.music.load(BASE_PATH + "/sounds/background.mp3")
+pygame.mixer.music.play(-1, 0.0)
 
 # another way to do it
 # ball_image = pygame.image.load(
