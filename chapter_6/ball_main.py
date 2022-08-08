@@ -10,6 +10,7 @@ WINDOW_WIDTH = 640
 WINDOW_HEIGHT = 480
 FRAMES_PER_SECOND = 30
 BASE_PATH = Path(__file__).resolve().parent
+N_BALLS = 30
 
 # initialize the window
 pygame.init()
@@ -19,7 +20,9 @@ clock = pygame.time.Clock()
 # load assets
 
 # initialize variables
-ball = Ball(window, WINDOW_WIDTH, WINDOW_HEIGHT)
+balls = []
+for i in range(N_BALLS):
+    balls.append(Ball(window, WINDOW_WIDTH, WINDOW_HEIGHT))
 
 # main loop
 while True:
@@ -30,13 +33,15 @@ while True:
             sys.exit()
 
     # per frame actions
-    ball.update()
+    for ball in balls:
+        ball.update()
 
     # clear the window
     window.fill(BLACK)
 
     # draw all window elements
-    ball.draw()
+    for ball in balls:
+        ball.draw()
 
     # update the window
     pygame.display.update()
