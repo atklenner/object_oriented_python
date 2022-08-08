@@ -20,4 +20,4 @@ class SimpleText():
         self.text_surface = self.font.render(self.text, True, self.text_color)
 
     def draw(self):
-        self.window.blit(self.text_surface. self.loc)
+        self.window.blit(self.text_surface, self.loc)
