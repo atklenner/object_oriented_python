@@ -20,6 +20,8 @@ clock = pygame.time.Clock()
 # load assets
 
 # initialize variables
+def a_callback_function():
+    print("pressed button c, printed with a callback function")
 button_a_up_path = BASE_PATH + "/images/button_a_up.png"
 button_a_down_path = BASE_PATH + "/images/button_a_down.png"
 button_b_up_path = BASE_PATH + "/images/button_b_up.png"
@@ -27,9 +29,9 @@ button_b_down_path = BASE_PATH + "/images/button_b_down.png"
 button_c_up_path = BASE_PATH + "/images/button_c_up.png"
 button_c_down_path = BASE_PATH + "/images/button_c_down.png"
 button_a = SimpleButton(window, (25, 30), button_a_up_path, button_a_down_path)
-button_b = SimpleButton(window, (150, 30), button_b_up_path, button_b_up_path)
+button_b = SimpleButton(window, (150, 30), button_b_up_path, button_b_down_path)
 button_c = SimpleButton(
-    window, (275, 30), button_c_up_path, button_c_down_path)
+    window, (275, 30), button_c_up_path, button_c_down_path, a_callback_function)
 
 # main loop
 while True:
@@ -42,8 +44,8 @@ while True:
             print("button a clicked")
         elif button_b.handle_event(event):
             print("button b clicked")
-        elif button_c.handle_event(event):
-            print("button c clicked")
+    button_c.handle_event(event)
+    
 
     # per frame actions
 
