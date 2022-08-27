@@ -36,7 +36,7 @@ class Balloon(ABC):
             Balloon.pop_sound.play()
             return True, self.points
         else:
-            return False
+            return False, 0
 
     def update(self):
         self.y -= self.speed_y
