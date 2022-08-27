@@ -2,7 +2,6 @@ from asyncio import start_unix_server
 import pygame
 from pygame.locals import *
 import sys
-from pathlib import Path
 import pygwidgets
 from BalloonManager import *
 from constants import N_BALLOONS
@@ -16,7 +15,6 @@ WINDOW_HEIGHT = 640
 PANEL_HEIGHT = 60
 USABLE_WINDOW_HEIGHT = WINDOW_HEIGHT - PANEL_HEIGHT
 FRAMES_PER_SECOND = 30
-BASE_PATH = str(Path(__file__).resolve().parent)
 
 # initialize the window
 pygame.init()
