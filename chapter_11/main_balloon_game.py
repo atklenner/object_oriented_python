@@ -40,7 +40,7 @@ while True:
         if playing:
             balloon_manager.handle_event(event)
             score = balloon_manager.get_score()
-            score_display.set_value("Score: " + str(score))
+            score_display.setValue("Score: " + str(score))
         elif start_button.handleEvent(event):
             balloon_manager.start()
             score_display.setValue("Score: 0")
@@ -65,7 +65,7 @@ while True:
     if playing:
         balloon_manager.draw()
 
-    pygame.draw.rect(window, GRAY, pygame.rect(0, USABLE_WINDOW_HEIGHT, WINDOW_WIDTH, PANEL_HEIGHT))
+    pygame.draw.rect(window, GRAY, pygame.Rect(0, USABLE_WINDOW_HEIGHT, WINDOW_WIDTH, PANEL_HEIGHT))
     score_display.draw()
     status_display.draw()
     start_button.draw()
