@@ -16,6 +16,7 @@ class BalloonManager():
         self.balloon_list = []
         self.number_popped = 0
         self.number_missed = 0
+        self.score = 0
 
         for i in range(N_BALLOONS):
             random_balloon = random.choice((BalloonSmall, BalloonMedium, BalloonLarge))
